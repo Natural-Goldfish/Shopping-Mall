@@ -1,0 +1,16 @@
+.headerWrap{
+    background-color : red
+}
+
+.headerLogo, .searchBar{
+    display: inline;
+}
+
+.util, .utilList, .utilListItem {
+    display: inline;
+}
+
+.headerNav, .headerNavList, .headerNavListItem{
+    display: inline;
+}
+
