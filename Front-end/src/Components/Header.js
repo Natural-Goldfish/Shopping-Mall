@@ -11,8 +11,10 @@ function Header() {
                     <img className="logoImage" src="/images/1.jpg" alt="temp" width="100px" />
                 </h1>
                 <div className="searchBar">
-                    <input type="text" placeholder="What are you looking for?" />
-                    <button type="button" />
+                    <form>
+                        <input type="text" placeholder="What are you looking for?" />
+                        <span type="span">click</span>
+                    </form>
                 </div>
                 <div className="util">
                     <ul className="utilList">
