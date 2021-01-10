@@ -1,10 +1,10 @@
-import { render } from '@testing-library/react';
-import React from 'react';
-import {useState, setState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-function Navigation2(props){
+
+export default function Navigation2(props){
     const categories = ["Men", "Boys", "Women", "Girls", "Unisex"];
     const linkList = ["/Men", "/Boys", "/Women", "/Girls", "/Unisex"];
+
     const [mouseOver, setMouseOver] = useState({
         "Men" : false,
         "Boys" : false,
@@ -12,9 +12,6 @@ function Navigation2(props){
         "Girls" : false,
         "Unisex" : false
     });
-
-
-    const categories2 = ["a", "b", "c", "d"];
 
     const tempCategories = [
         { category : "Men", link : "/Men"},
@@ -61,28 +58,20 @@ function Navigation2(props){
                 onMouseOver={(e) => {temp(e, {efe : "efef", gggg : "gggggg"})}}
 
     */
-    /*
-    return(
-        <ul className="navListWrap">
-            {categories.map(curCategory => (
-                <li key={curCategory} className="navListItem">
-                    <Link to={`/${curCategory}`} onMouseOver={(e) => {temp(e, curCategory)}}  onMouseOut={temp2} className="navLink">
-                      {mouseOver1 ? "this is temp" : `${curCategory}`}</Link>
-                </li>))}
-        </ul>
-    )
-    */
    return(
        <ul>
            {tempCategories.map((curCategory, index) => (
-               <li key={curCategory.category}>
-                   <Link to={curCategory.link} onMouseOver={(e) => temp(e, curCategory.category)} onMouseOut={(e) => temp2(e, curCategory.category)}>
-                       {mouseOver[`${curCategory.category}`] ? "it's working" : `${mouseOver[`${curCategory.category}`]}${curCategory.category}`}
+               <li key={curCategory.category} onMouseOver={(e) => temp(e, curCategory.category)} onMouseOut={(e) => temp2(e, curCategory.category)}>
+                   <Link to={curCategory.link}>
+                       {mouseOver[`${curCategory.category}`] ? 
+                       <ul>
+                           <li>"temp"</li>
+                           <li>"temp"</li>
+                           <li>"temp"</li>
+                        </ul> : `${mouseOver[`${curCategory.category}`]}${curCategory.category}`}
                    </Link>
                </li>
            ))}
        </ul>
    )
 }
-
-export default Navigation2;

@@ -1,56 +1,62 @@
-import React from 'react';
-import {useState, setState} from 'react';
+import React, { Component } from 'react';
+import {useState, useEffect} from 'react';
 
-function Banner(){
-    const imagePath = "/images/";
-    const [curImage, setCurImage] = useState(1);
-    const imageList = ["1", "2", "3", "4", "5"];
-    
-    // setCurImage 이렇게 사용하는게 맞는지? 확인할 것
-    function prevOnClick(){
-        console.log("this is prevOnClick");
-        console.log(curImage);
-        if (curImage === 1){
-            setCurImage(imageList.length);
+export default function Banner(){
+    const dirPath = "/images/";
+    const [imageIndex, setImageIndex] = useState(1);
+    const [imagePath, setImagePath] = useState(null);
+
+    function onPrevButton(e){
+        e.preventDefault();
+        let minIndex = 1;
+        let maxIndex = 5;
+        if(imageIndex === minIndex){
+            setImageIndex(maxIndex);
         }else{
-            setCurImage(curImage - 1);
+            setImageIndex(imageIndex - 1);
         }
-        console.log(curImage);
+        console.log("this is a Prev Button");
     }
 
-    function nextOnClick(){
-        console.log("this is nextOnClick");
-        console.log(curImage);
-        if(curImage === imageList.length){
-            setCurImage(1);
+    function onNextButton(e){
+        e.preventDefault();
+        let minIndex = 1;
+        let maxIndex = 5;
+        if(imageIndex === maxIndex){
+            setImageIndex(minIndex);
         }else{
-            setCurImage(curImage + 1);
+            setImageIndex(imageIndex + 1);
         }
-        console.log(curImage);
+        console.log("this is a Next Button");
     }
 
-    function newImagePath(){
-        let path = imagePath + String(curImage);
-        return path;
-    }
+    useEffect(() => {
+        console.log("Image Index");
+        console.log(imageIndex);
+        const tempInterval = setInterval((() => {
+            if(imageIndex === 5){
+                setImageIndex(1);
+            }else{
+                setImageIndex(imageIndex + 1);
+            }
+        }), 3000)
+        let tempPath = dirPath + String(imageIndex) + ".jpg";
+        setImagePath(tempPath);
+        return(() => {
+            clearInterval(tempInterval);
+        })
+    }, [imageIndex]);
 
-    const temp = () => {
-        let path = imagePath + String(curImage) + ".jpg";
-        return path;
-    }
 
     return(
         <div>
-            {console.log(curImage)}
-            <button type="button" onClick={prevOnClick}>Previous</button>
+            <button type="button" onClick={onPrevButton}>Previous</button>
             <div>
+                <img src={imagePath} width="500px" height="500px"></img>
                 
-                <img src={temp()} width="500px" height="500px"></img>
-                {console.log(newImagePath)}
             </div>
-            <button type="button" onClick={nextOnClick}>Next</button>
+            <button type="button" onClick={onNextButton}>Next</button>
         </div>
+    
     );
 }
-
-export default Banner;
