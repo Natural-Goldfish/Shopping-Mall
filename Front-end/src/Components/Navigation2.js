@@ -88,7 +88,7 @@ export default function Navigation2(props) {
                     <div className="testDiv" style={{display : 'none'}}>
                         <ul>
                             {curItem.masterCategories.map(((curCategory) => {
-                                return (<li>{curCategory}</li>)
+                                return (<li key={curCategory}>{curCategory}</li>)
                             }))}
                         </ul>
                     </div>
