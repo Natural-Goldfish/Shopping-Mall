@@ -1,52 +1,74 @@
-import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Navigation2(props){
+export default function Navigation2(props) {
     const categories = ["Men", "Boys", "Women", "Girls", "Unisex"];
-    const linkList = ["/Men", "/Boys", "/Women", "/Girls", "/Unisex"];
-
+    
     const [mouseOver, setMouseOver] = useState({
-        "Men" : false,
-        "Boys" : false,
-        "Women" : false,
-        "Girls" : false,
-        "Unisex" : false
+        "Men": false,
+        "Boys": false,
+        "Women": false,
+        "Girls": false,
+        "Unisex": false
     });
 
-    const tempCategories = [
-        { category : "Men", link : "/Men"},
-        { category : "Boys", link : "/Boys"},
-        { category : "Women", link : "/Women"},
-        { category : "Girls", link : "/Girls"},
-        { category : "Unisex", link : "/Unisex"}
+    const items = [
+        {
+            sex: "Men", 
+            link: "/Men",
+            masterCategories : ["Apparel", "Accessories", "Footwear", "Free Items", "Personal Care"]
+        },
+        {
+            sex: "Boys",
+            link: "/Boys",
+            masterCategories : ["Apparel", "Accessories", "Footwear"]
+        },
+        { 
+            sex: "Women",
+            link: "/Women",
+            masterCategories : ["Apparel", "Accessories", "Footwear", "Free Items", "Personal Care"]
+        },
+        { 
+            sex: "Girls",
+            link: "/Girls",
+            masterCategories : ["Apparel", "Accessories", "Footwear"]
+        },
+        { 
+            sex: "Unisex",
+            link: "/Unisex",
+            masterCategories : ["Apparel", "Accessories", "Footwear", "Free Items", "Personal Care", "Home", "Sporting Goods"]
+        }
     ];
 
-    
-    // 페이지를 새로 여는 등의 기본 동작을 막기 위해서는 e.preventDefault를 써야한다.
-    const temp = (e, key) => {
-        e.preventDefault();
-        console.log(e);
-        console.log(key);
-        console.log(mouseOver[key]);
-        console.log("the mouse is over");
 
-        setMouseOver(prevState => {
-            let temp = Object.assign({}, prevState);
-            temp[`${key}`] = true;
-            return temp;
+    // 페이지를 새로 여는 등의 기본 동작을 막기 위해서는 e.preventDefault를 써야한다.
+    const overMouse = (e, key) => {
+        e.preventDefault();
+        setMouseOver((prevState) => {
+            let nextMouseOver = Object.assign({}, prevState);
+            nextMouseOver[`${key}`] = true;
+            return nextMouseOver;
         });
-        console.log(mouseOver);
-        
+        onHiddenList(categories.indexOf(key));
     }
 
-    const temp2 = (e, key) => {
+    const outMouse = (e, key) => {
         e.preventDefault();
-        setMouseOver(prevState => {
-            let temp = Object.assign({}, prevState);
-            temp[`${key}`] = false;
-            return temp;
+        setMouseOver((prevState) => {
+            let nextMouseOver = Object.assign({}, prevState);
+            nextMouseOver[`${key}`] = false;
+            return nextMouseOver;
         });
-        console.log("the mouse is down");
+        onHiddenList(categories.indexOf(key));
+    }
+
+    function onHiddenList(index){
+        const tempDiv = document.getElementsByClassName("testDiv")[index];
+        if(tempDiv.style.display === 'none'){
+            tempDiv.style.display = 'block';
+        }else{
+            tempDiv.style.display = 'none';
+        }
     }
 
     /*
@@ -58,20 +80,25 @@ export default function Navigation2(props){
                 onMouseOver={(e) => {temp(e, {efe : "efef", gggg : "gggggg"})}}
 
     */
-   return(
-       <ul>
-           {tempCategories.map((curCategory, index) => (
-               <li key={curCategory.category} onMouseOver={(e) => temp(e, curCategory.category)} onMouseOut={(e) => temp2(e, curCategory.category)}>
-                   <Link to={curCategory.link}>
-                       {mouseOver[`${curCategory.category}`] ? 
-                       <ul>
-                           <li>"temp"</li>
-                           <li>"temp"</li>
-                           <li>"temp"</li>
-                        </ul> : `${mouseOver[`${curCategory.category}`]}${curCategory.category}`}
-                   </Link>
-               </li>
-           ))}
-       </ul>
-   )
+    return (
+        <ul className="headerNavList">
+            {items.map((curItem, index) => (
+                <li className="navListItem" key={curItem.sex} onMouseOver={(e) => overMouse(e, curItem.sex)} onMouseOut={(e) => outMouse(e, curItem.sex)}>
+                    <Link to={curItem.link}>{curItem.sex}</Link>
+                    <div className="testDiv" style={{display : 'none'}}>
+                        <ul>
+                            {curItem.masterCategories.map(((curCategory) => {
+                                return (<li>{curCategory}</li>)
+                            }))}
+                        </ul>
+                    </div>
+                </li>
+            ))}
+        </ul>
+    )
 }
+
+
+/*
+
+                        */

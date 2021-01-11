@@ -79,9 +79,10 @@
     width: 100%;
     height: 50px;
     background-color: #263343;
+    display : block;
 }
 
-/* .headerNavList {
+.headerNavList {
     width: 1280px;
     height: 50px;
     margin: auto;
@@ -89,8 +90,8 @@
     align-items: center;
 }
 
-.headerNavList li {
-    padding: 2px;
+.navListItem {
+    padding: 20px;
     margin-right: 20px;
     width: 70px;
     font-size: 20px;
@@ -98,10 +99,18 @@
 }
 
 .headerNavList a {
+    width : 100%;
+    height: 100%;
     color: whitesmoke;
 }
 
 .headerNavList li:hover {
     background-color: #d494668e;
     border-radius: 4px;
-} */
+}
+
+
+.testDiv {
+    position: absolute;
+    
+}
