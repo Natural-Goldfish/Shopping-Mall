@@ -7,26 +7,28 @@
 }
 
 .headerWrap {
-    background-color: whitesmoke;
     width: 100%;
     height: 100%;
+    background-color: whitesmoke;
 }
 
 .headerTop {
-    display: flex;
     width: 1280px;
+    display: flex;
     margin: auto;
 }
 
 /* 로고 */
 .headerLogo {
-    width: 100px;
-    margin: 10px 10px 2px 10px;
+    width: 290px;
+    display: inline;
+    text-align: right;
+    padding: 10px 10px 10px 0;
 }
 
 /* 검색 */
 .searchBar {
-    width: 300px;
+    width: 600px;
     height: 40px;
     background-color: white;
     border-radius: 20px;
@@ -35,17 +37,17 @@
 }
 
 .searchBar form input {
+    width: 545px;
+    height: 40px;
     border: none;
     outline: none;
-    width: 245px;
-    height: 40px;
     background-color: rgba(0, 0, 0, 0);
     color:#263343;
     padding-left: 10px;
 }
 
 .searchBar form span {
-    width: 55px;
+    width: 45px;
     color:#263343;
     font-weight: bold;
     cursor: pointer;
@@ -53,21 +55,22 @@
 
 /* 상단 텍스트 */
 .util {
+    width: calc(1280px - 900px);
+    height: 100%;
     display: flex;
-    width: calc(1280px - 400px);
     justify-content: flex-end;
-    padding-right: 10px;
 }
 
 .utilList {
     display: flex;
     list-style: none;
-    padding: 0;
+    margin-top: 10px;
+    margin-right: 50px;
 }
 
 .utilList li {
-    padding-left: 10px;
-    font-size: 13px;
+    margin-left: 10px;
+    font-size: 15px;
 }
 
 .utilList a {
@@ -76,41 +79,53 @@
 
 /* 메뉴 */
 .headerNav {
-    width: 100%;
+    width: 1280px;
     height: 50px;
     background-color: #263343;
-    display : block;
+    margin: auto;
 }
 
 .headerNavList {
-    width: 1280px;
-    height: 50px;
-    margin: auto;
+    width: 100%;
+    height: 100%;
     display: flex;
+    justify-content:space-around;
     align-items: center;
 }
 
-.navListItem {
-    padding: 20px;
-    margin-right: 20px;
-    width: 70px;
+.headerNavList li {
+    width: calc(1280px / 5);
+    padding : 5px 0px 5px 0px;
     font-size: 20px;
     text-align: center;
+    z-index: 2;
 }
 
 .headerNavList a {
-    width : 100%;
-    height: 100%;
-    color: whitesmoke;
+    color: pink;
 }
 
-.headerNavList li:hover {
+.headerNavList ul {
+    width: calc(1280px / 5);
+    position: absolute;
+    top: 5px;
+    background-color: #263343;
+}
+
+.headerNavList ul li {
+    width: 97%;
+    margin: 7px auto;
+    font-size: 18px;
+    color: pink;
+    z-index: 2;
+}
+
+.headerNavList ul li:hover {
     background-color: #d494668e;
     border-radius: 4px;
 }
 
-
 .testDiv {
     position: absolute;
-    
 }
+
