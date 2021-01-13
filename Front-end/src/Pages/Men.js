@@ -3,7 +3,8 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import Sidenavigation from '../Components/Sidenavigation';
 
-export default function Men(){
+export default function Men(props){
+    console.log("The Men page");
     const data = {
         sex: "Men",
         masterCategories: ["Apparel", "Accessories", "Footwear", "Free Items", "Personal Care"],
@@ -15,14 +16,13 @@ export default function Men(){
             PersonalCare: ["Temp1", "Temp2", "Temp3"]
         }
     }
-
+    
     return(
         <>
             <header>
                 <Header />
             </header>
             <main>
-                This is Men
                 <Sidenavigation data={data}/>
             </main>
             <footer>

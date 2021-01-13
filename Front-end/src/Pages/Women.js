@@ -3,6 +3,7 @@ import Header from '../Components/Header';
 import Sidenavigation from '../Components/Sidenavigation';
 
 function Women() {
+    console.log("The Women page");
     const data = {
         sex: "Women",
         masterCategories: ["Apparel", "Accessories", "Footwear", "Free Items", "Personal Care"],
@@ -20,7 +21,6 @@ function Women() {
                 <Header />
             </header>
             <main>
-                This is Women
                 <Sidenavigation data={data} />
             </main>
         </>

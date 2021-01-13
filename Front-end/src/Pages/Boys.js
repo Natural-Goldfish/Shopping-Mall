@@ -2,7 +2,11 @@ import React from 'react';
 import Header from '../Components/Header';
 import Sidenavigation from '../Components/Sidenavigation';
 
-function Boys() {
+export default function Boys(props) {
+    console.log("<------------->");
+    console.log("The Boys page");
+    console.log("");
+    console.log("<------------->");
     const data = {
         sex: "Boys",
         masterCategories: ["Apparel", "Accessories", "Footwear"],
@@ -18,11 +22,10 @@ function Boys() {
                 <Header />
             </header>
             <main>
-                This is Boys
                 <Sidenavigation data={data} />
             </main>
         </>
     )
+    
 }
 
-export default Boys;

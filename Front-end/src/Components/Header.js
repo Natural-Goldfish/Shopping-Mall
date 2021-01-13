@@ -1,9 +1,14 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import '../Styles/Header.css'
+import React from 'react';
+import '../Styles/Header.css';
 import Navigation2 from './Navigation2';
 
 function Header() {
+    function anchorListner(e){
+        e.preventDefault();
+        if(e.button === 0){
+            console.log("Left click");
+        }
+    }
     return(
         <div className="headerWrap">
             <div className="headerTop">
@@ -19,7 +24,7 @@ function Header() {
                 <div className="util">
                     <ul className="utilList">
                         <li className="utilListItem">
-                            <a href="#" >Sign In</a>
+                            <a href="/Temp2" onClick={anchorListner} >Sign In</a>
                         </li>
                         <li className="utilListItem">
                             <a href="#">Sign Out</a>

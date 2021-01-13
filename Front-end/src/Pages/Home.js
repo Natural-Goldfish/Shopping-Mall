@@ -1,9 +1,11 @@
 import React from 'react';
 import Header from '../Components/Header';
 import Main from '../Components/Main';
-import {Link} from 'react-router-dom';
 import Footer from '../Components/Footer';
-function Home(){
+
+function Home(props){
+    console.log("The Home page");
+    console.log(props.history);
     return(
         <>
             <header>

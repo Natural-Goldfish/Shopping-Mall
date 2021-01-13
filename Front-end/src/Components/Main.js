@@ -19,6 +19,8 @@ function Main(){
                 </div>
             </div>
             <Banner />
+            <Banner />
+            <Banner />
         </div>
     );
 }

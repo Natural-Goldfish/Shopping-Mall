@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {useState, useEffect} from 'react';
 
 export default function Banner(){
     const dirPath = "/images/";
-    const [imageIndex, setImageIndex] = useState(1);
+    const [imageIndex, setImageIndex] = useState(null);
     const [imagePath, setImagePath] = useState(null);
 
     function onPrevButton(e){
@@ -15,7 +15,6 @@ export default function Banner(){
         }else{
             setImageIndex(imageIndex - 1);
         }
-        console.log("this is a Prev Button");
     }
 
     function onNextButton(e){
@@ -27,12 +26,13 @@ export default function Banner(){
         }else{
             setImageIndex(imageIndex + 1);
         }
-        console.log("this is a Next Button");
     }
 
+    useEffect(() =>{
+        setImageIndex(Math.floor(Math.random()*5) + 1);
+    }, [])
+    
     useEffect(() => {
-        console.log("Image Index");
-        console.log(imageIndex);
         const tempInterval = setInterval((() => {
             if(imageIndex === 5){
                 setImageIndex(1);
@@ -42,9 +42,7 @@ export default function Banner(){
         }), 3000)
         let tempPath = dirPath + String(imageIndex) + ".jpg";
         setImagePath(tempPath);
-        return(() => {
-            clearInterval(tempInterval);
-        })
+        return(() => clearInterval(tempInterval))
     }, [imageIndex]);
 
 

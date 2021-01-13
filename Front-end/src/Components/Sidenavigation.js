@@ -1,30 +1,47 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 
 export default function Sidenavigation(props) {
-    const [mouseClick, setMouseClick] = useState(false);
-    const [divIndex, setDivIndex] = useState(0);
+    const [mouseClick, setMouseClick] = useState(()=> {
+        const tempArray = [];
+        for(let i = 0; i < props.data.masterCategories.length; i ++){
+            tempArray[i] = false;
+        }
+        return tempArray;
+    });
 
+    // 임시 객체에 띄어쓰기 해결
     function noSpace(word) {
         const splitedWord = word.split(" ");
         const newString = splitedWord.join("");
         return newString;
     }
+
+    // 링크 눌렸을때 이벤트 핸들러
     function onClicked(e, index){
         e.preventDefault();
-        if(mouseClick === false){
-            setMouseClick(true);
-        }else{
-            setMouseClick(false);
+        let tempArray = [];
+        for(let i = 0 ; i< mouseClick.length ; i ++){
+            tempArray[i] = false;
         }
-        setDivIndex(index);
+
+        if(mouseClick[index] === true){
+            setMouseClick(tempArray)
+        }else{
+            tempArray[index] = true;
+            setMouseClick(tempArray);
+        }
     }
 
     useEffect(() => {
-        const testDiv = document.getElementsByClassName('testDiv2')[divIndex];
-        if(mouseClick === true){
-            testDiv.style.display = 'block';
-        }else{
-            testDiv.style.display = 'none';
+        const testDivList = document.getElementsByClassName('testDiv2');
+        const targetIndex = mouseClick.indexOf(true);
+        for(let i = 0; i < testDivList.length; i ++){
+            if(i === targetIndex){
+                testDivList[i].style.display = 'block';
+            }else{
+                testDivList[i].style.display = 'none';
+            }
         }
     }, [mouseClick])
 
@@ -32,15 +49,19 @@ export default function Sidenavigation(props) {
         <nav>
             <h2>{props.data.sex}</h2>
             <ul>
+                <h4><Link to="#">Whole Thing</Link></h4>
                 {props.data.masterCategories.map(((curMasetrCategory, index) => {
                     return (
                         <React.Fragment>
-                            <li onClick={((e) => onClicked(e, index))}> {curMasetrCategory}</li>
+                            <h4 onClick={((e) => onClicked(e, index))}> 
+                                <Link to="#">{curMasetrCategory}</Link>
+                            </h4>
                             <div className="testDiv2" style={{display : 'none'}}>
                                 <ul>
+                                    <li><Link to="#">Whole thing</Link></li>
                                     {props.data.subCategories[`${noSpace(curMasetrCategory)}`].map(((curSubCategoryItem) => {
                                         return (
-                                            <li>{curSubCategoryItem}</li>
+                                            <li><Link to="#">{curSubCategoryItem}</Link></li>
                                         )
                                     }))}
                                 </ul>

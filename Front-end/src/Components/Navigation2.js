@@ -82,14 +82,15 @@ export default function Navigation2(props) {
     */
     return (
         <ul className="headerNavList">
+            <li><Link to={"/"}>Home</Link></li>
             {items.map((curItem, index) => (
                 <li className="navListItem" key={curItem.sex} onMouseOver={(e) => overMouse(e, curItem.sex)} onMouseOut={(e) => outMouse(e, curItem.sex)}>
                     <Link to={curItem.link}>{curItem.sex}</Link>
                     <div className="testDiv" style={{display : 'none'}}>
                         <ul>
-                            {curItem.masterCategories.map(((curCategory) => {
-                                return (<li key={curCategory}>{curCategory}</li>)
-                            }))}
+                            {curItem.masterCategories.map((curCategory) => {
+                                return <li key={curCategory}><Link to="#">{curCategory}</Link></li>
+                            })}
                         </ul>
                     </div>
                 </li>
@@ -97,8 +98,3 @@ export default function Navigation2(props) {
         </ul>
     )
 }
-
-
-/*
-
-                        */

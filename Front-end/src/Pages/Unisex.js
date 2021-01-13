@@ -3,6 +3,7 @@ import Header from '../Components/Header';
 import Sidenavigation from '../Components/Sidenavigation';
 
 function Unisex() {
+    console.log("The Unisex page");
     const data = {
         sex: "Unisex",
         masterCategories: ["Apparel", "Accessories", "Footwear", "Free Items", "Personal Care", "Home", "Sporting Goods"],
@@ -21,7 +22,6 @@ function Unisex() {
             <header>
                 <Header />
             </header>
-            This is Unisex
             <main>
                 <Sidenavigation data={data} />
             </main>
